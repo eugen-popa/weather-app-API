@@ -1,5 +1,5 @@
 var APPID = "61f94a9fa8130d49c23ed0f74d7e97af";
-var tempC,tempF, loc, icon, humidity, wind, direction, city;
+var tempC,tempF, loc, icon, humidity, wind, direction, city, sunset, sunrise;
 
 function sendRequest(url){
     var xmlhttp = new XMLHttpRequest();
@@ -15,6 +15,8 @@ function sendRequest(url){
             weather.loc = data.name;
             weather.tempC = K2C(data.main.temp);
             weather.tempF = K2F(data.main.temp);
+            weather.sunset  = min(data.sys.sunset);
+            weather.sunrise = min(data.sys.sunrise);
             weather.direction = degreesToDirection(data.wind.deg);
             update(weather);
         }
@@ -28,6 +30,12 @@ function updateByCityName(name) {
         "q="+name+
         "&APPID="+APPID;
     sendRequest(url);
+}
+
+function min(sec){
+    var data = new Date(sec * 1000);
+    var time = data.toLocaleTimeString('it-IT', {hour: '2-digit', minute:'2-digit'});
+    return time;
 }
 
 function degreesToDirection(degres){
@@ -72,6 +80,8 @@ function update(weather){
     humidity.innerHTML = weather.humidity;
     wind.innerHTML = weather.wind;
     direction.innerHTML = weather.direction;
+    sunset.innerHTML = weather.sunset;
+    sunrise.innerHTML = weather.sunrise;
 }
 
 function citys(){
@@ -82,30 +92,9 @@ function citys(){
     humidity = document.getElementById('humidity');
     wind = document.getElementById('wind');
     direction = document.getElementById('direction');
+    sunrise = document.getElementById('sunrise');
+    sunset = document.getElementById('sunset');
     city = document.getElementById('city').value || 'fremont';
     
     updateByCityName(city);
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
