@@ -1,0 +1,37 @@
+<html>
+    <head>
+        <title>weather app</title>
+        <link rel='stylesheet' type="text/css" href="style.css" />
+        <script type="text/javascript" src="app.js"></script>
+    </head>
+    <body>
+        
+        <div id='maps'></div>    
+        <div class="weather-app">
+            <div class="left">
+                <div class="temperatureC"><span id="temperatureC">0</span>C&deg;</div>
+                <div class="temperatureF"><span id="temperatureF">0</span>F&deg;</div>
+                <div class="location"><span id="location">Unknow</span></div>
+            </div>
+            <div class="right">
+            <div class="top">
+                <img id="icon" width="75px" src="img/icons/03d.png"/>
+                </div>
+                <div class="bottom">
+                <div class="humidity">
+                    <img src="/img/icons/humidity.png" height="16px" />
+                    <samp id="humidity">0</samp>%
+                    </div>
+                    <div class="wind">
+                    <span id="wind">0</span> km <span id="direction">N</span>
+                    </div>
+                </div>
+            </div>
+            <div class="form">
+						<input type="text" id="city" size="10" value="type city"/>
+                        <button onclick="citys()">ClicK</button>
+				</div>
+        </div>
+        
+    </body>
+</html>
